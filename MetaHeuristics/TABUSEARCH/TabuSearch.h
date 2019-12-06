@@ -230,7 +230,7 @@ int foundBestNeighbor(TB_Structure* theModel,int iter)
 		if(theModel->I_Frequency[b] >= ftol) frequency -= 1;
 		
 		//Did it! (Update everything, add stuff to lists etc)
-		if(1 || (recency <= 2 && frequency < ktol))
+		if((recency <= 2 && frequency < ktol))
 		{
 			//Minus 1 from everyones value
 			for(j = 0; j < theModel->tExpire*T; j++) theModel->tabuToList[j].life--;
@@ -239,12 +239,14 @@ int foundBestNeighbor(TB_Structure* theModel,int iter)
 			//Create the values to be added to the tabuToList, add them to list and sort
 			winnerTo[0] = (TabuTo){a,aval,theModel->tExpire};
 			winnerTo[1] = (TabuTo){b,bval,theModel->tExpire};
+			qsort(winnerTo,2,sizeof(TabuTo),cmpTabuTo);
 			
 			//Add values to winner for neighbors and sort
 			winnerNeighbor[0] = x0b;
 			winnerNeighbor[1] = x1b;
 			winnerNeighbor[2] = y0a;
 			winnerNeighbor[3] = y1a;
+			qsort(winnerNeighbor,4,sizeof(TabuNeighbors),cmpTabuNeighbor);
 
 			//Find the indices, add the new value, and bubblesort in the correct direction.
 			j = 0;
