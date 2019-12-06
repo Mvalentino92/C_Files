@@ -108,4 +108,6 @@ int main(int argc, char ** argv)
 		finalSol += sqrt(xDiff*xDiff + yDiff*yDiff);
 	}
 	printf("\nInitial is: %f\tFinal is: %f\n",sol,finalSol);
+	free(matrix);
+	free(root);
 }
