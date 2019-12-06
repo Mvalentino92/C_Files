@@ -172,4 +172,6 @@ int main(int argc, char ** argv)
 	//Pass everything to the algorithm
 	root = TB(root,sol,matrix,fitness,MX_ITER,tExpire,nExpire,s,t,V);
 	printf("%d\n",(int)fitness(root,0,0,0,V,matrix));
+	free(matrix);
+	free(root);
 }
